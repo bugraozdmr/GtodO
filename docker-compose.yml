@@ -1,0 +1,18 @@
+# sudo docker-compose -p gtodo up --build
+
+services:
+  gtodo:
+    image: postgres
+    container_name: gtodo.db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gtodo.db
+    restart: always
+    ports:
+      - "5441:5432"
+    volumes:
+      - postgres_gtodo:/var/lib/postgresql/data 
+
+volumes:
+  postgres_gtodo:

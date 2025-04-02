@@ -1,0 +1,10 @@
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+  "user_id" : "7189679e-7890-4d11-b55f-4ea50e911d67",
+  "title": "Learn Go",
+  "description": "Study the Go programming language",
+  "status": "pending",
+  "due_date": "2025-05-01T00:00:00Z"
+}

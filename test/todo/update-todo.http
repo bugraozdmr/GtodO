@@ -1,0 +1,10 @@
+PUT http://localhost:8080/todos/66537779-0ac9-4777-ada0-a4b7f7d45a18
+Content-Type: application/json
+
+{
+  "title": "Learn Laravel 11111",
+  "description": "Study the Go programming language",
+  "status": "pending",
+  "user_id" : "7189679e-7890-4d11-b55f-4ea50e911d67",
+  "due_date": "2025-05-01T00:00:00Z"
+}
