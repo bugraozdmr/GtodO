@@ -1,0 +1,6 @@
+Taglar oluşturulcak
+taglar ile todos ve todos ve users birleşcek
+todo tags yazılcak hali ile ilişki tablosu
+user_resiters adlı tablo değişcek ismi
+sql injection
+dönüş değerini değişmek lazım data: {} gibi

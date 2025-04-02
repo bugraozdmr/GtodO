@@ -28,5 +28,12 @@ func Init(conf config.Config) *server.ServerStruct {
 	todoRoutes := routes.NewTodoInit(server, todoDelivery)
 	todoRoutes.TodoRoutes()
 
+	// ---------------- Tag Service -----------------
+	tagRepo := repository.NewTagRepository(database)
+	tagUseCase := usecase.UseCaseTag(tagRepo)
+	tagDelivery := delivery.TagDelivery(tagUseCase)
+	tagRoutes := routes.NewTagInit(server, tagDelivery)
+	tagRoutes.TagRoutes()
+
 	return server
 }
