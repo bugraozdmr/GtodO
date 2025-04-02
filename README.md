@@ -1,20 +1,36 @@
-initializing db
-sudo docker-compose -p gtodo up --build
+# gtodo - Todo List API
 
-used technologies
-Docker
-redis
-postgres
+`gtodo` is a simple RESTful API built with Go to manage a Todo List. This API allows users to create, read, update, and delete Todo tasks. The application uses a PostgreSQL database to store the todos.
 
-packages
-echo , gorm , uuid ,
+## Features
 
+- **Create Todo**: Add new todos with title, description, status, and due date.
+- **Get All Todos**: Retrieve all todos in the system.
+- **Get Todo by ID**: Retrieve a specific todo by its ID.
+- **Update Todo**: Modify an existing todo.
+- **Delete Todo**: Remove a todo by its ID.
 
-rate limiting, asenkron
-her ayın izlenme verileri
+## Technologies Used
 
-Batch işlemleri ile topluca veri gönderme (örneğin, her 1000 izlenme sonrası PostgreSQL'e kaydetme).
+- **Go**: Backend programming language.
+- **PostgreSQL**: Database to store todos.
+- **Echo**: Web framework for Go to handle HTTP requests.
+- **Gorm**: ORM for Go to interact with the PostgreSQL database.
+- **UUID**: For unique identification of todos.
+  
+## Requirements
 
-Tuzaklar (Traps) kullanarak, belirli koşullarda veritabanı güncellemesi yapma.
+- Go (>= 1.16)
+- PostgreSQL database
+- Git
+- Docker (optional, for running the database in a container)
 
-Veri arşivleme, sharding, rate limiting ve batch işlemleri gibi teknikler, veritabanı boyutunu kontrol altında tutmanıza yardımcı olur.
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/gtodo.git
+cd gtodo
+go mod tidy
+```
