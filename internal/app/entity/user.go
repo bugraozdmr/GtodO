@@ -8,13 +8,13 @@ import (
 )
 
 type UserRegister struct {
-	ID        uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;"`
+	ID        uuid.UUID `json:"-" gorm:"type:uuid;primaryKey;"`
 	Username  string    `json:"username" gorm:"not null;unique"`
 	Name      string    `json:"name" gorm:"not null"`
-	Email     string    `json:"email" gorm:"not null;unique"`
-	Password  string    `json:"password" gorm:"not null"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	Email     string    `json:"-" gorm:"not null;unique"`
+	Password  string    `json:"-" gorm:"not null"`
+	CreatedAt time.Time `json:"-"`
+	UpdatedAt time.Time `json:"-"`
 }
 
 type UserLogin struct {
@@ -27,4 +27,8 @@ func (u *UserRegister) BeforeCreate(tx *gorm.DB) (err error) {
 		u.ID = uuid.New()
 	}
 	return
+}
+
+func (UserRegister) TableName() string {
+	return "user"
 }

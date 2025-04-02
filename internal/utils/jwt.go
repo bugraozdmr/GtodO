@@ -11,7 +11,7 @@ import (
 
 const secretKey = "supersecret"
 
-func GenerateToken(email string, userId int64) (string, error) {
+func GenerateToken(username string) (string, error) {
 	// TODO: move this later
 	cnf, err := config.LoadConfig()
 	if err != nil {
@@ -20,8 +20,7 @@ func GenerateToken(email string, userId int64) (string, error) {
 	secretKey := cnf.SecretKey
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"email":  email,
-		"userId": userId,
+		"username":  username,
 		"exp":    time.Now().Add(time.Hour * 2).Unix(),
 	})
 

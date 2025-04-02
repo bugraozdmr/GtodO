@@ -12,8 +12,8 @@ type Todo struct {
 	Title       string    `json:"title" gorm:"not null"`
 	Description string    `json:"description"`
 	UserID      uuid.UUID `json:"user_id" gorm:"type:uuid;not null;index"`
-	Tags        []Tag     `json:"tags" gorm:"many2many:todo_tags;"`
-	Completed   bool      `json:"completed" gorm:"default:false"`
+	TagID       uuid.UUID `json:"tag_id" gorm:"type:uuid;not null;index"` // Tek bir tag
+	Tag         Tag       `json:"tag" gorm:"foreignKey:TagID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	DueDate     *time.Time `json:"due_date" gorm:"default:null"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
