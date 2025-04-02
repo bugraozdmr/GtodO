@@ -1,10 +1,11 @@
 POST http://localhost:8080/todos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDM2NDAxNjgsInVzZXJuYW1lIjoiam9obl9kb2UxIn0.8IJ2KA-GFdP0L4kZxuNS8FgUaNFqPWFxA1riAs0IVPo
 
 {
-  "user_id" : "7189679e-7890-4d11-b55f-4ea50e911d67",
   "title": "Learn Go",
   "description": "Study the Go programming language",
   "status": "pending",
+  "tag_id" : "3ecaff67-2aa5-4f99-b0b1-a2a86a1848b5",
   "due_date": "2025-05-01T00:00:00Z"
 }

@@ -3,9 +3,13 @@ package usecase
 import (
 	"context"
 	"errors"
+	"fmt"
 	todo "gtodo/internal/app/entity"
-	validation "gtodo/internal/app/validations/todo"
 	"gtodo/internal/app/repository"
+	validation "gtodo/internal/app/validations/todo"
+	"gtodo/internal/utils"
+
+	"github.com/labstack/echo/v4"
 )
 
 type TodoUseCase interface {
@@ -18,13 +22,18 @@ type TodoUseCase interface {
 
 type TodoInteraction struct {
 	TodoRepository repository.TodoRepository
+	Context echo.Context
 }
 
 func (t *TodoInteraction) RegisterTodo(ctx context.Context, todo *todo.Todo) (int, error) {
+	username := utils.GetUsername()
+	fmt.Println("sadsad",username)
+
 	if err := validation.ValidateTodo(todo); err != nil {
 		return 2, err
 	}
 
+	
 	err := t.TodoRepository.CreateTodo(todo)
 	if err != nil {
 		return 0, err

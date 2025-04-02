@@ -27,7 +27,13 @@ func GenerateToken(username string) (string, error) {
 	return token.SignedString([]byte(secretKey))
 }
 
-func VerifyToken(tokenString string) (int64, error) {
+func VerifyToken(tokenString string) (string, error) {
+	cnf, err := config.LoadConfig()
+	if err != nil {
+		return "", errors.New("failed to load environment variables")
+	}
+	secretKey := cnf.SecretKey
+
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("unexpected signing method")
@@ -36,21 +42,24 @@ func VerifyToken(tokenString string) (int64, error) {
 	})
 
 	if err != nil {
-		return 0, err
+		return "", err
 	}
 
 	if !token.Valid {
-		return 0, errors.New("invalid token")
+		return "", errors.New("invalid token")
 	}
 
+	// Claims
 	claims, ok := token.Claims.(jwt.MapClaims)
-
 	if !ok {
-		return 0, errors.New("Invalid token claims")
+		return "", errors.New("invalid token claims")
 	}
 
-	/* email := claims["email"].(string) */
-	userId := int64(claims["userId"].(float64))
+	// username
+	username, ok := claims["username"].(string)
+	if !ok {
+		return "", errors.New("username not found in token")
+	}
 
-	return userId, nil
+	return username, nil
 }
