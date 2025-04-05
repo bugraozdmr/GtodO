@@ -1,6 +1,6 @@
 POST http://localhost:8080/todos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDM2NDAxNjgsInVzZXJuYW1lIjoiam9obl9kb2UxIn0.8IJ2KA-GFdP0L4kZxuNS8FgUaNFqPWFxA1riAs0IVPo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDM4NzkzMjAsInVzZXJuYW1lIjoiam9obl9kb2UxIn0.0B-z3cCxtgCWorR8Ga9trbAekuN33ELNfhy8_vTeI7E
 
 {
   "title": "Learn Go",

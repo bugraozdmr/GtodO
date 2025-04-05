@@ -9,6 +9,7 @@ import (
 type UserRepository interface {
 	CreateUser(user *user.UserRegister) error
 	FindUserByUserName(username string) (*user.UserRegister, error)
+	FindUserIdByUserName(username string) (string, error)
 }
 
 type UserDataBaseInteraction struct {
@@ -30,6 +31,19 @@ func (u *UserDataBaseInteraction) FindUserByUserName(username string) (*user.Use
 	}
 	return user, nil
 }
+
+func (u *UserDataBaseInteraction) FindUserIdByUserName(username string) (string, error) {
+	var user struct {
+		ID string `gorm:"column:id"`
+	}
+
+	if err := u.DB.Table("user").Select("id").Where("username = ?", username).Take(&user).Error; err != nil {
+		return "", err
+	}
+
+	return user.ID, nil
+}
+
 
 func NewUserRepository(db *gorm.DB) UserRepository {
 	return &UserDataBaseInteraction{

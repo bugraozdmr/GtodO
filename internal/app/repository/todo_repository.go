@@ -33,7 +33,10 @@ func (r *TodoDataBaseInteraction) CreateTodo(todo *todo.Todo) error {
 
 func (r *TodoDataBaseInteraction) FindTodoById(id string) (*todo.Todo, error) {
 	var todo todo.Todo
-	if err := r.DB.First(&todo, "id = ?", id).Error; err != nil {
+	if err := r.DB.
+		Preload("Tag").
+		Where("id = ?", id).
+		Take(&todo).Error; err != nil {
 		return nil, err
 	}
 	return &todo, nil
@@ -55,7 +58,7 @@ func (r *TodoDataBaseInteraction) DeleteTodo(id string) error {
 
 func (r *TodoDataBaseInteraction) GetAllTodos() ([]todo.Todo, error) {
 	var todos []todo.Todo
-	if err := r.DB.Find(&todos).Error; err != nil {
+	if err := r.DB.Preload("Tag").Find(&todos).Error; err != nil {
 		return nil, err
 	}
 	return todos, nil

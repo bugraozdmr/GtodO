@@ -1,1 +1,2 @@
-DELETE http://localhost:8080/tags/3ecaff67-2aa5-4f99-b0b1-a2a86a1848b5
+DELETE http://localhost:8080/tags/8bd6caf9-a6ec-460c-9742-83895c76f208
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDM4ODY2OTEsInVzZXJuYW1lIjoiam9obl9kb2UxIn0.NzrLxIyujq-wLwcuUOLlKfOCISXe6XdpuYWysiXAgks

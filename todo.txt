@@ -1,6 +1,14 @@
-Taglar oluşturulcak
-taglar ile todos ve todos ve users birleşcek
-todo tags yazılcak hali ile ilişki tablosu
-user_resiters adlı tablo değişcek ismi
-sql injection
-dönüş değerini değişmek lazım data: {} gibi
+Taglar oluşturulcak +
+taglar ile todos ve todos ve users birleşcek +
+todo tags yazılcak hali ile ilişki tablosu + 
+user_resiters adlı tablo değişcek ismi +
+sql injection + // gorm zaten hallediyor
+dönüş değerini değişmek lazım data: {} gibi +
+
+
+hata yakalaması bozuk istediğim mesajı gösteremiyorum bunu düzelt handler'da +
+
+authorization olmadanda al deneme amaçlı +
+
+
+Bu yapı ile katmanlar ayrıldı injectionlar di'da yapıldı clean architecture koşulları sağlandı

@@ -1,0 +1,6 @@
+Eğer importlarda sorun yaşıyorsa bunu çalıştırmayı dene
+go mod tidy
+
+
+todo "gtodo/internal/app/entity"
+bu tarz importlar mümkündür

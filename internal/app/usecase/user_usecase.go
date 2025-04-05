@@ -12,6 +12,7 @@ import (
 type UserUseCase interface {
 	RegisterUser(ctx context.Context, user *app.UserRegister) (int, error)
 	Login(login *app.UserLogin) (*LoginOutput, error)
+	GetUserId(username string) (string, error)
 }
 
 type UserInteraction struct {
@@ -61,6 +62,14 @@ func (u *UserInteraction) Login(login *app.UserLogin) (*LoginOutput, error) {
 		Message: "Login successful",
 		Token:   token,
 	}, nil
+}
+
+func (u *UserInteraction) GetUserId(username string) (string, error) {
+	id, err := u.UserRepository.FindUserIdByUserName(username)
+	if err != nil {
+		return "", err
+	}
+	return id, nil
 }
 
 func UseCase(repo repository.UserRepository) UserUseCase {

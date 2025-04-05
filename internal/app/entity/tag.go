@@ -6,7 +6,7 @@ import (
 )
 
 type Tag struct {
-	ID    uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;"`
+	ID    uuid.UUID `json:"-" gorm:"type:uuid;primaryKey;"`
 	Name  string    `json:"name" gorm:"not null;unique"`
 	Color string    `json:"color" gorm:"default:blue"`
 }

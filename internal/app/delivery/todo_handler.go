@@ -30,7 +30,7 @@ func (t *TodoHandler) CreateTodoHandler(c echo.Context) error {
 	}
 
 	ctx := c.Request().Context()
-	flag, err := t.todoUseCase.RegisterTodo(ctx, &todo)
+	flag, err := t.todoUseCase.RegisterTodo(ctx, &todo, c)
 
 	if err != nil {
 		if flag == 0 {
@@ -44,7 +44,7 @@ func (t *TodoHandler) CreateTodoHandler(c echo.Context) error {
 		}
 	}
 
-	return c.JSON(http.StatusOK, map[string]string{
+	return c.JSON(http.StatusCreated, map[string]string{
 		"Message": "Todo created successfully",
 	})
 }
@@ -58,7 +58,9 @@ func (t *TodoHandler) GetAllTodosHandler(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, todos)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": todos,
+	})
 }
 
 func (t *TodoHandler) GetTodoByIDHandler(c echo.Context) error {
@@ -71,7 +73,9 @@ func (t *TodoHandler) GetTodoByIDHandler(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, todo)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": todo,
+	})
 }
 
 func (t *TodoHandler) UpdateTodoHandler(c echo.Context) error {
@@ -94,7 +98,7 @@ func (t *TodoHandler) UpdateTodoHandler(c echo.Context) error {
 	todo.ID = todoID
 
 	ctx := c.Request().Context()
-	if err := t.todoUseCase.UpdateTodo(ctx, &todo); err != nil {
+	if err := t.todoUseCase.UpdateTodo(ctx, &todo, c); err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
 			"error": err.Error(),
 		})

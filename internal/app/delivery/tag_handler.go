@@ -21,7 +21,7 @@ type TagUserCase interface {
 func (t *TagHandler) CreateTagHandler(c echo.Context) error {
 	var tag app.Tag
 	if err := c.Bind(&tag); err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]string{
+		return c.JSON(http.StatusCreated, map[string]string{
 			"error": "bad request",
 		})
 	}
@@ -31,7 +31,7 @@ func (t *TagHandler) CreateTagHandler(c echo.Context) error {
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
-			"error": "something went wrong",
+			"error": err.Error(),
 		})
 	}
 
@@ -45,7 +45,7 @@ func (t *TagHandler) DeleteTagHandler(c echo.Context) error {
 	ctx := c.Request().Context()
 	if err := t.tagUseCase.DeleteTag(ctx, id); err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
-			"error": "something went wrong",
+			"error": err.Error(),
 		})
 	}
 
@@ -59,11 +59,13 @@ func (t *TagHandler) GetAllTagsHandler(c echo.Context) error {
 	tags, err := t.tagUseCase.GetAllTags(ctx)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
-			"error": "something went wrong",
+			"error": err.Error(),
 		})
 	}
 
-	return c.JSON(http.StatusOK, tags)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tags,
+	})
 }
 
 func TagDelivery(tagUseCase usecase.TagUseCase) *TagHandler {
